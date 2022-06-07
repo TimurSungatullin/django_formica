@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from rest_framework.reverse import reverse
 
@@ -5,6 +6,7 @@ from posts.forms import PostForm
 from posts.models import Post
 
 
+@login_required
 def main(request):
     posts = Post.objects.all().order_by('-id')
     return render(request, 'posts/main.html', {'posts': posts})
