@@ -4,12 +4,14 @@ from rest_framework.reverse import reverse
 
 from posts.forms import PostForm
 from posts.models import Post
+from posts.utils import get_temp
 
 
 @login_required
 def main(request):
     posts = Post.objects.all().order_by('-id')
-    return render(request, 'posts/main.html', {'posts': posts})
+    temp = get_temp()
+    return render(request, 'posts/main.html', {'posts': posts, 'temp': temp})
 
 
 @login_required

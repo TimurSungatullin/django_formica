@@ -3,6 +3,9 @@
 <body>
 <a class="btn" href="{% url "posts:create" %}">Создать</a>
 <a class="btn" href="{% url "authorization:logout" %}">Выйти</a>
+<p>
+    Текущая температура: {{ temp }}&#176;
+</p>
 {% for post in posts %}
     <div style="background: #ccc; width: 500px; margin: 20px">
         <label>Название поста</label>
