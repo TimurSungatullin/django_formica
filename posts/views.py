@@ -12,11 +12,13 @@ def main(request):
     return render(request, 'posts/main.html', {'posts': posts})
 
 
+@login_required
 def delete(request, pk):
     Post.objects.filter(pk=pk).delete()
     return redirect(reverse("posts:main"))
 
 
+@login_required
 def edit(request, pk):
     post = Post.objects.get(pk=pk)
     post_form = PostForm(instance=post)
@@ -28,6 +30,8 @@ def edit(request, pk):
 
     return render(request, 'posts/edit.html', {'form': post_form, 'btn': 'Отредактировать'})
 
+
+@login_required
 def create(request):
     post_form = PostForm()
     if request.POST:
