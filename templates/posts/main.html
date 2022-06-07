@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<body>
+<a class="btn" href="{% url "posts:create" %}">Создать</a>
+<a class="btn" href="{% url "authorization:logout" %}">Выйти</a>
+{% for post in posts %}
+    <div style="background: #ccc; width: 500px; margin: 20px">
+        <label>Название поста</label>
+        <p>{{ post.title }}</p>
+        <label>Текст поста</label>
+        <p>{{ post.text }}</p>
+        {% if request.user == post.user %}
+        <a class="btn" href="{% url "posts:edit" post.id %}">Отредактировать</a>
+        <a class="btn" href="{% url "posts:delete" post.id %}">Удалить</a>
+        {% endif %}
+    </div>
+{% endfor %}
+</body>
+{% endblock %}
